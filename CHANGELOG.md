@@ -48,3 +48,8 @@
     - Metadata support
     - Cache statistics
 
+
+## [0.0.2] - 2025-12-31
+
+### Documentation Changes
+
