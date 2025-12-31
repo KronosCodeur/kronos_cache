@@ -1,4 +1,4 @@
-# 🗄️ Kronos Cache
+# Kronos Cache
 
 A powerful and intuitive cache system for Flutter with REST-like API, encryption, query builder, and seamless integration with awesome_logger.
 
@@ -9,22 +9,22 @@ Part of **Kronos DEVX Packages** - Tools to improve Flutter Developer Experience
 
 ---
 
-## ✨ Features
+## Features
 
-- 🎯 **REST-like API** - Intuitive `get()`, `post()`, `put()`, `patch()`, `delete()`
-- 🔍 **Powerful Query Builder** - Filter, sort, limit with fluent syntax
-- 🔒 **Built-in Encryption** - AES-256 encryption for sensitive data
-- 📱 **Context Extension** - Access cache via `context.cache`
-- 🔄 **Reactive Streams** - Real-time updates with Stream support
-- ⚡ **Multiple Adapters** - Hive, SQLite, Memory (extensible)
-- 🎨 **Awesome Logger Integration** - All operations logged beautifully
-- 📦 **Offline-First** - Perfect for offline applications
-- ⏱️ **TTL Support** - Auto-expiration of cached data
-- 🎭 **Type-Safe** - Full Dart type safety
+- **REST-like API** - Intuitive `get()`, `post()`, `put()`, `patch()`, `delete()`
+- **Powerful Query Builder** - Filter, sort, limit with fluent syntax
+- **Built-in Encryption** - AES-256 encryption for sensitive data
+- **Context Extension** - Access cache via `context.cache`
+- **Reactive Streams** - Real-time updates with Stream support
+- **Multiple Adapters** - Hive, SQLite, Memory (extensible)
+- **Awesome Logger Integration** - All operations logged beautifully
+- **Offline-First** - Perfect for offline applications
+- **TTL Support** - Auto-expiration of cached data
+- **Type-Safe** - Full Dart type safety
 
 ---
 
-## 📦 Installation
+## Installation
 
 Add to your `pubspec.yaml`:
 
@@ -36,7 +36,7 @@ dependencies:
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Initialize
 
@@ -122,7 +122,7 @@ class MyWidget extends StatelessWidget {
 
 ---
 
-## 🔍 Query Builder
+## Query Builder
 
 ### Simple Queries
 
@@ -163,7 +163,7 @@ final results = await cache.collection('posts')
 
 ---
 
-## 🔄 Reactive Streams
+## Reactive Streams
 
 ### Watch Collection
 
@@ -193,7 +193,7 @@ cache.collection('users').watch('current_user').listen((user) {
 
 ---
 
-## 📊 Bulk Operations
+## Bulk Operations
 
 ```dart
 // Bulk insert
@@ -210,7 +210,7 @@ await cache.collection('items').bulkDelete(['item_1', 'item_2', 'item_3']);
 
 ---
 
-## 🔒 Encryption
+## Encryption
 
 ### Global Encryption
 
@@ -238,7 +238,7 @@ final sensitiveCache = KronosCache.collection(
 
 ---
 
-## ⏱️ TTL & Expiration
+## TTL & Expiration
 
 ```dart
 // Set TTL on create
@@ -253,7 +253,7 @@ final metadata = await cache.getMetadata('temp_data');
 
 ---
 
-## 🎨 Advanced Features
+## Advanced Features
 
 ### Get or Fetch Pattern
 
@@ -287,7 +287,7 @@ await cache.updateMetadata('item_1', {'needsSync': false});
 
 ---
 
-## 📱 Widgets
+## Widgets
 
 ### CacheBuilder
 
@@ -315,7 +315,7 @@ CacheStreamBuilder<List<Product>>(
 
 ---
 
-## 🛠️ Adapters
+## Adapters
 
 ### Hive (Recommended)
 
@@ -347,7 +347,7 @@ class MyCustomAdapter implements CacheAdapter {
 
 ---
 
-## 📊 Cache Management
+## Cache Management
 
 ### Statistics
 
@@ -369,7 +369,7 @@ await KronosCache.clearAll();
 
 ---
 
-## 💡 Best Practices
+## Best Practices
 
 1. **Initialize once** - Call `KronosCache.initialize()` in `main()`
 2. **Use collections** - Organize data into logical collections
@@ -381,7 +381,7 @@ await KronosCache.clearAll();
 
 ---
 
-## 🎯 Use Cases
+## Use Cases
 
 ### E-Commerce App
 
@@ -423,7 +423,7 @@ await messagesCache.create(messageId, encryptedMessage);
 
 ---
 
-## 🤝 Integration with Awesome Logger
+## Integration with Awesome Logger
 
 All cache operations are automatically logged:
 
@@ -436,7 +436,7 @@ All cache operations are automatically logged:
 
 ---
 
-## 🔄 Migration from Other Solutions
+## Migration from Other Solutions
 
 ### From Hive
 
@@ -465,7 +465,7 @@ await context.cache.set('prefs', 'key', data);
 
 ---
 
-## 📚 Examples
+## Examples
 
 Check the `/example` folder for complete examples:
 - Basic CRUD operations
@@ -476,19 +476,19 @@ Check the `/example` folder for complete examples:
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md).
 
 ---
 
-## 📄 License
+## License
 
 MIT License - see [LICENSE](LICENSE) file.
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Arris (KronosCodeur)**
 
@@ -499,14 +499,22 @@ Created with ❤️ for the Flutter community
 
 ---
 
-## 🙏 Support
+## Support
 
 If you find this package useful:
-- ⭐ Star on [GitHub](https://github.com/KronosCodeur/kronos_cache)
-- 👍 Like on [pub.dev](https://pub.dev/packages/kronos_cache)
-- 🐛 Report issues
-- 📢 Share with the community
+- Star on [GitHub](https://github.com/KronosCodeur/kronos_cache)
+- Like on [pub.dev](https://pub.dev/packages/kronos_cache)
+- Report issues
+- Share with the community
+
+### Get Help
+
+- Issues: [GitHub Issues](https://github.com/KronosCodeur/kronos_cache/issues)
+- Discussions: [GitHub Discussions](https://github.com/KronosCodeur/kronos_cache/discussions)
+- Email: codeurk@gmail.com
 
 ---
 
-**Next in Kronos DEVX**: More packages coming soon! 🚀
+**Happy Caching!**
+
+**Next in Kronos DEVX**: More packages coming soon!
