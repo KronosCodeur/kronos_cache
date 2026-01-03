@@ -43,7 +43,7 @@ class CacheCollection {
       AwesomeLogger.stopTimer('create_$name');
       AwesomeLogger.success('Entry created: $name/$key');
 
-      await _notifyChanged();
+      _notifyChanged();
     } catch (e, stack) {
       AwesomeLogger.stopTimer('create_$name');
       AwesomeLogger.error('Failed to create entry', error: e, stackTrace: stack);
@@ -84,7 +84,7 @@ class CacheCollection {
       await adapter.update(name, key, updates);
       AwesomeLogger.success('Entry updated: $name/$key');
 
-      await _notifyChanged();
+      _notifyChanged();
     } catch (e, stack) {
       AwesomeLogger.error('Failed to update entry', error: e, stackTrace: stack);
       rethrow;
@@ -108,7 +108,7 @@ class CacheCollection {
       await adapter.delete(name, key);
       AwesomeLogger.success('Entry deleted: $name/$key');
 
-      await _notifyChanged();
+      _notifyChanged();
     } catch (e, stack) {
       AwesomeLogger.error('Failed to delete entry', error: e, stackTrace: stack);
       rethrow;
@@ -144,7 +144,7 @@ class CacheCollection {
       AwesomeLogger.stopTimer('bulk_create_$name');
       AwesomeLogger.success('Bulk create complete: ${items.length} items');
 
-      await _notifyChanged();
+      _notifyChanged();
     } catch (e, stack) {
       AwesomeLogger.stopTimer('bulk_create_$name');
       AwesomeLogger.error('Bulk create failed', error: e, stackTrace: stack);
@@ -166,7 +166,7 @@ class CacheCollection {
       await adapter.bulkDelete(name, keys);
       AwesomeLogger.success('Bulk delete complete: ${keys.length} keys');
 
-      await _notifyChanged();
+      _notifyChanged();
     } catch (e, stack) {
       AwesomeLogger.error('Bulk delete failed', error: e, stackTrace: stack);
       rethrow;
@@ -227,6 +227,8 @@ class CacheCollection {
   }
 
   Stream<List<Map<String, dynamic>>> stream() {
+    getAll().then((data) => _controller.add(data));
+
     return _controller.stream;
   }
 
@@ -240,9 +242,8 @@ class CacheCollection {
     });
   }
 
-  Future<void> _notifyChanged() async {
-    final data = await getAll();
-    _controller.add(data);
+  void _notifyChanged() {
+    getAll().then((data) => _controller.add(data));
   }
 
   Future<void> clear() async {
@@ -252,10 +253,42 @@ class CacheCollection {
       await adapter.clearCollection(name);
       AwesomeLogger.success('Collection cleared: $name');
 
-      await _notifyChanged();
+      _notifyChanged();
     } catch (e, stack) {
       AwesomeLogger.error('Failed to clear collection', error: e, stackTrace: stack);
       rethrow;
+    }
+  }
+
+  Future<bool> isExpired(String key) async {
+    try {
+      final data = await get(key);
+      if (data == null) {
+        AwesomeLogger.warning('Key not found: $name/$key');
+        return true;
+      }
+
+      final metadata = await adapter.getMetadata(name, key);
+      if (metadata == null) return true;
+
+      final expiresAt = metadata['expiresAt'];
+      if (expiresAt == null) {
+        return false;
+      }
+
+      final expirationDate = DateTime.parse(expiresAt);
+      final isExpired = DateTime.now().isAfter(expirationDate);
+
+      if (isExpired) {
+        AwesomeLogger.warning('Cache expired: $name/$key');
+      } else {
+        AwesomeLogger.success('Cache valid: $name/$key');
+      }
+
+      return isExpired;
+    } catch (e) {
+      AwesomeLogger.error('Error checking expiration', error: e);
+      return true;
     }
   }
 

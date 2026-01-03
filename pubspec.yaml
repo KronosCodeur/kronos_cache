@@ -1,6 +1,6 @@
 name: kronos_cache
 description: "A powerful and intuitive cache system for Flutter with REST-like API, encryption, and awesome_logger integration."
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/KronosCodeur/kronos_cache
 repository: https://github.com/KronosCodeur/kronos_cache
 issue_tracker: https://github.com/KronosCodeur/kronos_cache/issues

@@ -53,3 +53,8 @@
 
 ### Documentation Changes
 
+## [0.0.3] - 2026-01-03
+
+### Breaking Changes
+
+- CacheCollection: Introduced the isExpired() method to manually verify if a specific entry has exceeded its Time-To-Live (TTL).
